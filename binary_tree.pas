@@ -2,8 +2,6 @@ unit binary_tree;
 
 interface
 
-uses math;
-
 Type
   PNode = ^TNode;
   TNode = record
@@ -50,6 +48,14 @@ begin
     dispose(tree);
     tree := nil;
   end;
+end;
+
+function max(int1, int2: Integer): Integer;
+begin
+  if int1 > int2 then
+    max := int1
+  else
+    max := int2;
 end;
 
 function get_height(tree: PNode): Integer;
