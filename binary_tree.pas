@@ -14,6 +14,7 @@ procedure add_node(var tree: PNode; int: Integer);
 procedure delete_tree(var tree: PNode);
 function get_height(tree: PNode): Integer;
 function get_leaves(tree: PNode): Integer;
+function is_in_tree(tree: PNode; int: Integer): Boolean;
 
 implementation
 
@@ -26,9 +27,9 @@ begin
     tree^.count := 1;
     tree^.left := nil;
     tree^.right := nil;
-    end
-    else
-    begin
+  end
+  else
+  begin
     if int <> tree^.data then
       if int < tree^.data then
         add_node(tree^.left, int)
@@ -75,6 +76,19 @@ begin
       get_leaves := 1
     else
       get_leaves := get_leaves(tree^.left) + get_leaves(tree^.right);
+end;
+
+function is_in_tree(tree: PNode; int: Integer): Boolean;
+begin
+  if tree = nil then
+    is_in_tree := false
+  else
+    if tree^.data > int then
+      is_in_tree := is_in_tree(tree^.left, int)
+    else if tree^.data < int then
+      is_in_tree := is_in_tree(tree^.right, int)
+    else
+      is_in_tree := true;
 end;
 
 end.

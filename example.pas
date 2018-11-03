@@ -15,6 +15,11 @@ begin
   add_node(tree, 71);
   add_node(tree, 75);
 
+  writeln(is_in_tree(tree, 71)); // printing if integer 71 is in tree
+  // output: TRUE
+  writeln(is_in_tree(tree, 22)); // printing if integer 22 is in tree
+  // output: FALSE
+
   writeln(get_height(tree)); // printing height of tree
   // output: 3
   writeln(get_leaves(tree)); // printing number of leaves in a tree
