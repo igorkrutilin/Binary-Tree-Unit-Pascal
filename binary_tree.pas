@@ -15,6 +15,10 @@ procedure delete_tree(var tree: PNode);
 function get_height(tree: PNode): Integer;
 function get_leaves(tree: PNode): Integer;
 function is_in_tree(tree: PNode; int: Integer): Boolean;
+procedure print_tree(tree: PNode);
+function has_duplicates(tree: PNode): Boolean;
+function get_nodes(tree: PNode): Integer;
+function copy_tree(tree: PNode): PNode;
 
 implementation
 
@@ -89,6 +93,53 @@ begin
       is_in_tree := is_in_tree(tree^.right, int)
     else
       is_in_tree := true;
+end;
+
+procedure print_tree(tree: PNode);
+var
+  i: Integer;
+begin
+  if tree <> nil then
+  begin
+    print_tree(tree^.left);
+    for i := 1 to tree^.count do
+      write(tree^.data:5);
+    print_tree(tree^.right);
+  end
+  else
+    write('');
+end;
+
+function has_duplicates(tree: PNode): Boolean;
+begin
+  if tree = nil then
+    has_duplicates := false
+  else if tree^.count > 1 then
+    has_duplicates := true
+  else
+    has_duplicates := has_duplicates(tree^.right) or has_duplicates(tree^.right)
+end;
+
+function get_nodes(tree: PNode): Integer;
+begin
+  if tree = nil then
+    get_nodes := 1
+  else
+    get_nodes := get_nodes(tree^.left) + get_nodes(tree^.right)
+end;
+
+function copy_tree(tree: PNode): PNode;
+begin
+  if tree <> nil then
+  begin
+    new(copy_tree);
+    copy_tree^.data := tree^.data;
+    copy_tree^.count := tree^.count;
+    copy_tree^.left := copy_tree(tree^.left);
+    copy_tree^.right := copy_tree(tree^.right);
+  end
+  else
+      copy_tree := nil;
 end;
 
 end.

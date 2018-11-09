@@ -1,7 +1,8 @@
 uses binary_tree; // importing unit
 
 var
-  tree: PNode; // this will be our tree
+  tree: PNode; // this will be our main tree
+  tree1: PNode;
 begin
   tree := nil; // creating an empty tree
 
@@ -14,6 +15,21 @@ begin
   add_node(tree, 71);
   add_node(tree, 71);
   add_node(tree, 75);
+
+  print_tree(tree);
+  // output: 45 65 71 71 75
+  writeln();
+
+  writeln(has_duplicates(tree));
+  // output: TRUE
+
+  writeln(get_nodes(tree));
+  // output: 5
+
+  tree1 := copy_tree(tree); // copying main tree
+  print_tree(tree1); // printing copy
+  // output: 45 65 71 71 75
+  writeln();
 
   writeln(is_in_tree(tree, 71)); // printing if integer 71 is in tree
   // output: TRUE
